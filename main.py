@@ -26,6 +26,12 @@ if place:
         st.plotly_chart(figure)
 
     if option=='Sky':
-        filtered_data = [dict["weather"][0]["main"] for dict in filtered_data]
-        st.image()
+        columns = st.columns(8)
+        sky_conditions = [dict["weather"][0]["main"] for dict in filtered_data]
+
+        for index, condition in enumerate(sky_conditions):
+            condition = condition.lower()
+            with columns[index % 8]: 
+                st.image(f"images/{condition}.png", width=115)
+        
 
